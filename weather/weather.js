@@ -5,7 +5,10 @@ var getWeather = (lat, lng, callback) => {request({
   json:true
 },(error, response, body) => {
   if(!error && response.statusCode === 200){
-    callback(undefined, `Current temperature: ${body.currently.temperature}C`);
+    callback(undefined, {
+      temperature: body.currently.temperature,
+      apparentTemperature: body.currently.apparentTemperature
+    });
   }else {
     callback('Unable to fetch weather.');
   }
